@@ -1,50 +1,74 @@
-# React + TypeScript + Vite
+# WhatsApp User Interface
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Пользовательский интерфейс для отправки и получения текстовых сообщений через WhatsApp с использованием сервиса [GREEN-API](https://green-api.com/). Интерфейс приближен к веб-версии WhatsApp.
 
-Currently, two official plugins are available:
+## Основные функции
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Авторизация**: Вход с использованием `idInstance` и `apiTokenInstance` из системы GREEN-API.
+- **Создание чата**: Ввод номера телефона для создания нового чата.
+- **Отправка сообщений**: Отправка текстовых сообщений в выбранный чат.
+- **Получение сообщений**: Получение и отображение входящих сообщений в реальном времени.
+- **Адаптивный дизайн**: Интерфейс адаптирован для мобильных устройств и десктопов.
+- **Оповещения**: Уведомления об ошибках отправки сообщений с использованием `react-toastify`.
 
-## Expanding the ESLint configuration
+## Как использовать
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**Авторизация**:
 
-- Configure the top-level `parserOptions` property like this:
+- Введите idInstance и apiTokenInstance из системы GREEN-API и нажмите Войти.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+**Создание чата:**
+
+- Введите номер телефона в формате 79111234567 и нажмите "Создать чат".
+
+**Отправка сообщений:**
+
+- Введите текст сообщения в поле ввода и нажмите кнопку отправки (➤) или Enter.
+
+**Получение сообщений:**
+
+- Входящие сообщения будут отображаться в реальном времени.
+
+**Выход:**
+
+- Нажмите кнопку "Выйти" для завершения сессии.
+
+## Установка и запуск
+
+- **Зарегистрируйтесь на GREEN-API, создайте авторизованный инстанс и включите входящие сообщения**:
+
+  > Документация
+  > https://green-api.com/docs/before-start/#cabinet - регистрация
+  > https://green-api.com/docs/before-start/#instance - создание инстанса
+  > https://green-api.com/docs/before-start/#qr - авторизация инстанса
+  > https://green-api.com/docs/api/receiving/technology-http-api/ - включить входящие сообщения (смотри видео инструкцию), важно включить "Получать уведомления о входящих сообщениях и файлах"
+
+- **Установите зависимости**:
+
+```
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Создайте `.env` файл и добавьте туда `apiUrl` из инстанса GREEN-API**:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+
+VITE_GREEN_API_URL=ваш_урл
+```
+
+- **Запустите проект локально**:
+
+```
+npm run dev
+```
+
+В консоли появится ссылка на localhost проекта
+
+## Технологии
+
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **Vite**
+- **react-toastify**
+- **Vercel**
